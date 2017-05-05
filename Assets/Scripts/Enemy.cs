@@ -13,15 +13,14 @@ public class Enemy : MonoBehaviour {
     public Sprite Enemy2;
     public Sprite Enemy3;
     public Sprite Enemy4;
-    public float speedEnemy;
 
     private System.Random rnd = new System.Random();
     private int directionOption;
 
     // Use this for initialization
     void Start () {
-        //flagMovePlayer = true;
-        //StartCoroutine(Move());
+        flagMovePlayer = true;
+        StartCoroutine(Move());
     }
 
     // Update is called once per frame
@@ -43,7 +42,7 @@ public class Enemy : MonoBehaviour {
                     {
                         coorEnemy[1] += 0.5f;
                         this.transform.position = new Vector3(coorEnemy[0], coorEnemy[1], 0);
-                        yield return new WaitForSeconds(speedEnemy);
+                        yield return new WaitForSeconds(0.5f);
                     }
                     else
                     {
@@ -60,7 +59,7 @@ public class Enemy : MonoBehaviour {
                     {
                         coorEnemy[0] += 0.5f;
                         this.transform.position = new Vector3(coorEnemy[0], coorEnemy[1], 0);
-                        yield return new WaitForSeconds(speedEnemy);
+                        yield return new WaitForSeconds(0.5f);
                     }
                     else
                     {
@@ -77,7 +76,7 @@ public class Enemy : MonoBehaviour {
                     {
                         coorEnemy[1] -= 0.5f;
                         this.transform.position = new Vector3(coorEnemy[0], coorEnemy[1], 0);
-                        yield return new WaitForSeconds(speedEnemy);
+                        yield return new WaitForSeconds(0.5f);
                     }
                     else
                     {
@@ -94,7 +93,7 @@ public class Enemy : MonoBehaviour {
                     {
                         coorEnemy[0] -= 0.5f;
                         this.transform.position = new Vector3(coorEnemy[0], coorEnemy[1], 0);
-                        yield return new WaitForSeconds(speedEnemy);
+                        yield return new WaitForSeconds(0.5f);
                     }
                     else
                     {

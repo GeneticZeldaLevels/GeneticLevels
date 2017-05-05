@@ -17,28 +17,17 @@ public class Player : MonoBehaviour
     public GameObject randomWall;
     public GameObject door;
     public GameObject enemy;
-    public GameObject background;
 
-    private float[] coorX = new float[32] { 0.0f, 0.5f, 1.0f, 1.5f, 2.0f, 2.5f, 3.0f, 3.5f, 4.0f, 4.5f, 5.0f, 5.5f, 6.0f, 6.5f, 7.0f, 7.5f, 8.0f, 8.5f, 9.0f, 9.5f, 10.0f, 10.5f, 11.0f, 11.5f, 12.0f, 12.5f, 13.0f, 13.5f, 14.0f, 14.5f, 15.0f, 15.5f };
-    private float[] coorY = new float[32] { 0.0f, 0.5f, 1.0f, 1.5f, 2.0f, 2.5f, 3.0f, 3.5f, 4.0f, 4.5f, 5.0f, 5.5f, 6.0f, 6.5f, 7.0f, 7.5f, 8.0f, 8.5f, 9.0f, 9.5f, 10.0f, 10.5f, 11.0f, 11.5f, 12.0f, 12.5f, 13.0f, 13.5f, 14.0f, 14.5f, 15.0f, 15.5f };
+    private float[] coorX = new float[15] {-3.5f, -3.0f, -2.5f, -2.0f, -1.5f, -1.0f, -0.5f, 0.0f, 0.5f, 1.0f, 1.5f, 2.0f, 2.5f, 3.0f, 3.5f };
+    private float[] coorY = new float[11] {-2.5f, -2.0f, -1.5f, -1.0f, -0.5f, 0.0f, 0.5f, 1.0f, 1.5f, 2.0f, 2.5f };
     private float[] coorPlayer, coorDoor;
     private System.Random rnd = new System.Random();
     private int randomX, randomY, numWalls;
     private List<string> inCoorXY;
     private Vector3 posPlayer, posDoor, posEnemy;
 
-
     void Start()
     {
-        GameObject newBackground = Instantiate(randomWall) as GameObject;
-        newWall.transform.position = pos;
-    }
-}
-
-/*
-    void Start()
-    {
-        
         Time.timeScale = 1;
         this.GetComponent<SpriteRenderer>().sprite = LinkFrontStop;
 
@@ -70,7 +59,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        // position of Player
+        /* position of Player */
         coorPlayer = new float[2];
         randomX = rnd.Next(1, 15);
         randomY = rnd.Next(1, 11);
@@ -85,7 +74,7 @@ public class Player : MonoBehaviour
         coorPlayer[0] = coorX[randomX];
         coorPlayer[1] = coorY[randomY];
 
-        // position of door
+        /* position of door */
         coorDoor = new float[2];
         randomX = rnd.Next(1, 15);
         randomY = rnd.Next(1, 11);
@@ -101,7 +90,7 @@ public class Player : MonoBehaviour
         posDoor = new Vector3(coorX[randomX], coorY[randomY], 0f);
         door.transform.position = posDoor;
 
-        //position of Enemy
+        /* position of Enemy */
         Enemy.coorEnemy = new float[2];
         randomX = rnd.Next(1, 15);
         randomY = rnd.Next(1, 11);
@@ -117,7 +106,7 @@ public class Player : MonoBehaviour
         posEnemy = new Vector3(coorX[randomX], coorY[randomY], 0f);
         enemy.transform.position = posEnemy;
         
-        //Pass values to enemy script
+        /* Pass values to enemy script */
         Enemy.refCoorDoor = coorDoor;
         Enemy.refCoorPlayer = coorPlayer;
         Enemy.refInCoorXY = inCoorXY;
@@ -183,7 +172,6 @@ public class Player : MonoBehaviour
         this.enabled = false;
         door.GetComponent<SpriteRenderer>().sprite = Door1;
         yield return new WaitForSeconds(0.5f);
-        this.GetComponent<SpriteRenderer>().sprite = LinkBackStop;
         door.GetComponent<SpriteRenderer>().sprite = Door2;
         this.transform.localScale = new Vector3(0.7f, 0.7f, 1);
         yield return new WaitForSeconds(1);
@@ -197,4 +185,3 @@ public class Player : MonoBehaviour
         Enemy.flagMovePlayer = false;
     }
 }
-*/
