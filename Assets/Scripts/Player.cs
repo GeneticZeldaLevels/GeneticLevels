@@ -7,8 +7,7 @@ public class Player : MonoBehaviour
     public Sprite LinkFrontStop, LinkTurnLeftStop, LinkTurnRightStop, LinkBackStop;
     public Sprite Door1, Door2, Door3, Door4;
     public Sprite EnemyWin;
-    public GameObject door;
-    public GameObject enemy;
+    public GameObject door, enemy, winnerNotice, looserNotice;
     
     private float[] coorX = new float[32] { -7.5f, -7.0f, -6.5f, -6.0f, -5.5f, -5.0f, -4.5f, 4.0f, -3.5f, -3.0f, -2.5f, -2.0f, -1.5f, -1.0f, -0.5f, 0.0f, 0.5f, 1.0f, 1.5f, 2.0f, 2.5f, 3.0f, 3.5f, 4.0f, 4.5f, 5.0f, 5.5f, 6.0f, 6.5f, 7.0f, 7.5f, 8.0f };
     private float[] coorY = new float[32] { -7.5f, -7.0f, -6.5f, -6.0f, -5.5f, -5.0f, -4.5f, 4.0f, -3.5f, -3.0f, -2.5f, -2.0f, -1.5f, -1.0f, -0.5f, 0.0f, 0.5f, 1.0f, 1.5f, 2.0f, 2.5f, 3.0f, 3.5f, 4.0f, 4.5f, 5.0f, 5.5f, 6.0f, 6.5f, 7.0f, 7.5f, 8.0f };
@@ -21,6 +20,8 @@ public class Player : MonoBehaviour
     
     void Start()
     {
+        winnerNotice.GetComponent<Canvas>().enabled = false;
+        looserNotice.GetComponent<Canvas>().enabled = false;
         Time.timeScale = 1;
         this.GetComponent<SpriteRenderer>().sprite = LinkFrontStop;
     }
@@ -79,6 +80,7 @@ public class Player : MonoBehaviour
 
     IEnumerator AnimationDoor()
     {
+        this.GetComponent<SpriteRenderer>().sprite = LinkBackStop;
         this.enabled = false;
         door.GetComponent<SpriteRenderer>().sprite = Door1;
         yield return new WaitForSeconds(0.5f);
@@ -92,7 +94,10 @@ public class Player : MonoBehaviour
         this.transform.localScale = new Vector3(0, 0, 1);
         yield return new WaitForSeconds(1);
         door.GetComponent<SpriteRenderer>().sprite = Door1;
-        Enemy.flagMovePlayer = false;
+        foreach (GameObject e in Map.enemies)
+            e.GetComponent<SpriteRenderer>().sprite = EnemyWin;
+        Time.timeScale = 0;
+        winnerNotice.GetComponent<Canvas>().enabled = true;
     }
     IEnumerator AnimationEnemy()
     {
@@ -111,5 +116,6 @@ public class Player : MonoBehaviour
         foreach (GameObject e in Map.enemies)
             e.GetComponent<SpriteRenderer>().sprite = EnemyWin;
         Time.timeScale = 0;
+        looserNotice.GetComponent<Canvas>().enabled = true;
     }
 }

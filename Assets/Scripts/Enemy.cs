@@ -34,9 +34,9 @@ public class Enemy : MonoBehaviour {
             if (directionOption == 1)
             {
                 GameObject.Find(name).GetComponent<SpriteRenderer>().sprite = Enemy1;
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < 3; i++)
                 {
-                    if (inCoorXY.Contains(coorEnemy[0] + ", " + (coorEnemy[1] + 0.5f))) //&& (refCoorDoor[0] + ", " + refCoorDoor[1] != coorEnemy[0] + ", " + (coorEnemy[1] + 0.5f)) && flagMovePlayer)
+                    if (inCoorXY.Contains(coorEnemy[0] + ", " + (coorEnemy[1] + 0.5f)) && (refCoorDoor[0] + ", " + refCoorDoor[1] != coorEnemy[0] + ", " + (coorEnemy[1] + 0.5f)))
                     {
                         coorEnemy[1] += 0.5f;
                         GameObject.Find(name).transform.position = new Vector3(coorEnemy[0], coorEnemy[1], 0);
@@ -51,9 +51,9 @@ public class Enemy : MonoBehaviour {
             else if (directionOption == 2)
             {
                 GameObject.Find(name).GetComponent<SpriteRenderer>().sprite = Enemy2;
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < 3; i++)
                 {
-                    if (inCoorXY.Contains((coorEnemy[0] + 0.5f) + ", " + coorEnemy[1])) //&& (refCoorDoor[0] + ", " + refCoorDoor[1] != (coorEnemy[0] + 0.5f) + ", " + coorEnemy[1]) && flagMovePlayer)
+                    if (inCoorXY.Contains((coorEnemy[0] + 0.5f) + ", " + coorEnemy[1]) && (refCoorDoor[0] + ", " + refCoorDoor[1] != (coorEnemy[0] + 0.5f) + ", " + coorEnemy[1]))
                     {
                         coorEnemy[0] += 0.5f;
                         GameObject.Find(name).transform.position = new Vector3(coorEnemy[0], coorEnemy[1], 0);
@@ -68,9 +68,9 @@ public class Enemy : MonoBehaviour {
             else if (directionOption == 3)
             {
                 GameObject.Find(name).GetComponent<SpriteRenderer>().sprite = Enemy3;
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < 3; i++)
                 {
-                    if (inCoorXY.Contains(coorEnemy[0] + ", " + (coorEnemy[1] - 0.5f))) //&& (refCoorDoor[0] + ", " + refCoorDoor[1] != coorEnemy[0] + ", " + (coorEnemy[1] - 0.5f)) && flagMovePlayer)
+                    if (inCoorXY.Contains(coorEnemy[0] + ", " + (coorEnemy[1] - 0.5f)) && (refCoorDoor[0] + ", " + refCoorDoor[1] != coorEnemy[0] + ", " + (coorEnemy[1] - 0.5f)))
                     {
                         coorEnemy[1] -= 0.5f;
                         GameObject.Find(name).transform.position = new Vector3(coorEnemy[0], coorEnemy[1], 0);
@@ -85,9 +85,9 @@ public class Enemy : MonoBehaviour {
             else if (directionOption == 4)
             {
                 GameObject.Find(name).GetComponent<SpriteRenderer>().sprite = Enemy4;
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < 3; i++)
                 {
-                    if (inCoorXY.Contains((coorEnemy[0] - 0.5f) + ", " + coorEnemy[1])) //&& (refCoorDoor[0] + ", " + refCoorDoor[1] != (coorEnemy[0] - 0.5f) + ", " + coorEnemy[1]) && flagMovePlayer)
+                    if (inCoorXY.Contains((coorEnemy[0] - 0.5f) + ", " + coorEnemy[1]) && (refCoorDoor[0] + ", " + refCoorDoor[1] != (coorEnemy[0] - 0.5f) + ", " + coorEnemy[1]))
                     {
                         coorEnemy[0] -= 0.5f;
                         GameObject.Find(name).transform.position = new Vector3(coorEnemy[0], coorEnemy[1], 0);

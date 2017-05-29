@@ -5,7 +5,7 @@ using System.IO;
 
 public class Map : MonoBehaviour
 {
-    public GameObject floor, player, enemy;
+    public GameObject floor, player, enemy, door;
     public static int numEnemy = 0;
     public static GameObject[] enemies;
     
@@ -15,9 +15,11 @@ public class Map : MonoBehaviour
     private float[] coorX = new float[32] { -7.5f, -7.0f, -6.5f, -6.0f, -5.5f, -5.0f, -4.5f, 4.0f, -3.5f, -3.0f, -2.5f, -2.0f, -1.5f, -1.0f, -0.5f, 0.0f, 0.5f, 1.0f, 1.5f, 2.0f, 2.5f, 3.0f, 3.5f, 4.0f, 4.5f, 5.0f, 5.5f, 6.0f, 6.5f, 7.0f, 7.5f, 8.0f };
     private float[] coorY = new float[32] { 8.0f, 7.5f, 7.0f, 6.5f, 6.0f, 5.5f, 5.0f, 4.5f, 4.0f, 3.5f, 3.0f, 2.5f, 2.0f, 1.5f, 1.0f, 0.5f, 0.0f, -0.5f, -1.0f, -1.5f, -2.0f, -2.5f, -3.0f, -3.5f, -4.0f, -4.5f, -5.0f, -5.5f, -6.0f, -6.5f, -7.0f, -7.5f };
     private List<string> inCoorXY;
-
+    private bool flagDoorpos;
+    
     void Start()
     {
+        flagDoorpos = false;
         inCoorXY = new List<string>();
         floorUnitX = floor.transform.localScale.x;
         floorUnitY = floor.transform.localScale.y;
@@ -84,6 +86,13 @@ public class Map : MonoBehaviour
             }
             else if (flag == 2)
             {
+                if(flagDoorpos == false)
+                {
+                    door.transform.position = pos;
+                    Enemy.refCoorDoor = new float[] { pos.x, pos.y };
+                    flagDoorpos = true;
+                }
+
                 x = Int32.Parse(substrings[substrings.Length - 1]);
                 substrings = lines[i + 1].Split(' ');
                 y = Int32.Parse(substrings[1]);
@@ -93,7 +102,7 @@ public class Map : MonoBehaviour
                 direccion = Int32.Parse(substrings[1]);
                 i += 3;
 
-                Vector3 pos = new Vector3(coorX[x], coorY[y], 1f);
+                pos = new Vector3(coorX[x], coorY[y], 1f);
                 GameObject newFloor = Instantiate(floor) as GameObject;
                 newFloor.transform.position = pos;
                 newFloor.GetComponent<Renderer>().sortingOrder = 1;
@@ -121,7 +130,7 @@ public class Map : MonoBehaviour
                 y = Int32.Parse(substrings[1]);
                 i++;
 
-                Vector3 pos = new Vector3(coorX[x], coorY[y], 0f);
+                pos = new Vector3(coorX[x], coorY[y], 0f);
                 GameObject newEnemy = Instantiate(enemy) as GameObject;
                 newEnemy.transform.position = pos;
                 newEnemy.name = "enemy " + numEnemy;
